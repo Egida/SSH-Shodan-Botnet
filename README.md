@@ -5,6 +5,10 @@ Before you use this script make sure to install the pip packages:
 1. Paramiko
 2. shodan
 
+Tested on:
+Ubuntu20+
+Python version: 3.9+
+
 And make sure to setup a shodan account to use your shodan API
 
 once you are done doing that, open the py file and go to ```API_KEY``` variable and insert your key within the quotes
