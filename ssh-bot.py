@@ -83,6 +83,7 @@ while(update < len(D)):
 
     except paramiko.ssh_exception.AuthenticationException:
         Failed()
+        time.sleep(1)
         Passes = Passes + 1
 
     except paramiko.ssh_exception.NoValidConnectionsError:
