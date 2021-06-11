@@ -33,6 +33,8 @@ After longer testing periods, avoid using mixed character password files without
 ```python
 with open(pass_file, 'r', encoding="ISO-8859-1") as source2:
 ```
+This is to avoid a clash between different encoded characters within a password file(e.g. utf-8 seemingly not being functional while ISO characters are present but ISO can be functional while utf-8 characters are present)
+
 (There was also a bug relating to file size which I assumed was because of the way the data was handled but instead was caused because of the fast iteration)
 
 # Update
