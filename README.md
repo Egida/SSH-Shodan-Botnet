@@ -28,3 +28,12 @@ As for installing process just do:
 (also it only extracts IPs within page 1(for the API) until you get premium for your account, you could however also put it in a loop since page 1 will eventually refresh with new IPs.
 
 
+# Bugs
+After longer testing periods, avoid using mixed character password files without declaring ```ISO-8859-1```:
+```python
+with open(pass_file, 'r', encoding="ISO-8859-1") as source2:
+```
+(There was also a bug relating to file size which I assumed was because of the way the data was handled but instead was caused because of the fast iteration)
+
+# Update
+You can now use files near the size of rockyou.txt original file size.
